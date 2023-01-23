@@ -1,4 +1,4 @@
-const SubmitBtn =  document.querySelector('.sumbitBtn')
+const sumbitBtn =  document.querySelector('.sumbitBtn')
 
 function Todo (title, description, date) {
     this.title = title
