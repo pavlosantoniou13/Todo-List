@@ -81,23 +81,45 @@ sumbitBtn.addEventListener('click', makeTodo)
 }
 
 function makeTodo(ev) {
-    const deleteBtn = document.createElement("button")
-    content.appendChild(deleteBtn).className = "delete"
-
+    ev.preventDefault();
     const title = document.querySelector(".title")
     const description = document.querySelector(".description")
     const date = document.querySelector(".date")
 
-    ev.preventDefault();
-    console.log(ev)
 
+    const card = document.createElement("div")
+    let cardText = document.createElement("div")
+    let para1 = document.createElement("p");
+    let para2 = document.createElement("p"); 
+    let para3 = document.createElement("p"); 
+    const deleteBtn = document.createElement("button")
+
+
+
+
+    content.appendChild(card).className = "card"
+    card.appendChild(cardText).className = "cardText"
+    cardText.appendChild(para1).className = "title"
+    cardText.appendChild(para2).className = "description"
+    cardText.appendChild(para3).className = "date"
+    card.appendChild(deleteBtn).className = "delete"
+
+
+
+
+
+    
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
-        
     todoStorage.push(todo)
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
+
+
+    para1.textContent = "Title:" + " " + title.value
+    para2.textContent = "Description:" + " " +   description.value
+    para3.textContent = "Date:" + " " +    date.value
     deleteBtn.textContent = "Delete"
     deleteBtn.addEventListener("click", deleteTodo)
 }
@@ -113,7 +135,7 @@ function deleteTodo(ev){
         return true
        }
     })
-    //ev.target.closest('.card').remove();
+    ev.target.closest('.card').remove();
 }
 
 export default formCreate
