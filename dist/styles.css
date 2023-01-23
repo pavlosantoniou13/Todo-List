@@ -1,0 +1,48 @@
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.header {
+    background-color: #1e293b;
+    color: white;
+    height:13%;
+    
+}
+
+.header-item {
+    display: flex;
+    height: 3vh;
+    width: fit-content;
+    gap: 14px;
+    cursor: pointer;
+    margin-left: 16px;
+    margin-top: 10px;
+    align-items: center;
+    
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.navbar {
+    display: flex;
+    height: 100%;
+    width: 15%;
+    background-color: black;
+    color: white;
+}
+
+.upper-items {
+    display: flex;
+}
+
+.content {
+    background-color: red;
+    width: 100%;
+}
+

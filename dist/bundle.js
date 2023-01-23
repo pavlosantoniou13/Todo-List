@@ -505,6 +505,88 @@ function styleTagTransform(css, styleElement) {
 
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/todoList.js":
+/*!*************************!*\
+  !*** ./src/todoList.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "makeTodo": () => (/* binding */ makeTodo)
+/* harmony export */ });
+const content = document.querySelector(".content")
+const addTodoBtn = document.querySelector(".new-todo-btn")
+
+let todoStorage = [];
+
+function Todo (title, description, date) {
+    this.title = title
+    this.description = description
+    this.date = date
+    
+}
+
+
+
+
+function formCreate() {  
+const form = document.createElement("form")
+const formBoxTitle = document.createElement("div")
+const labelTitle = document.createElement("label")
+labelTitle.for = "title"
+const title = document.createElement("input")
+
+const formBoxDescription = document.createElement("div")
+const descriptionLabel = document.createElement("label")
+descriptionLabel.for = "description"
+const description = document.createElement("input")
+const formBoxDate = document.createElement("div")
+const dueDateLabel = document.createElement("label")
+dueDateLabel.for = "date"
+const dueDate = document.createElement("input")
+dueDate.type = "date"
+
+const sumbitBtn = document.createElement("button")
+sumbitBtn.type = "submit"
+
+content.appendChild(form).className = "form";
+form.appendChild(formBoxTitle)
+formBoxTitle.appendChild(labelTitle)
+formBoxTitle.appendChild(title)
+form.appendChild(sumbitBtn).className = "submit"
+
+
+
+
+labelTitle.textContent = "Title:"
+descriptionLabel.textContent = "Description"
+sumbitBtn.textContent = "Submit"
+
+
+
+sumbitBtn.addEventListener('click', makeTodo)
+
+}
+
+function makeTodo(ev) {
+    ev.preventDefault();
+    console.log(ev)
+
+    const todo = new Todo(title.value, description.value, date.value)
+        
+    todoStorage.push(todo)
+    
+   
+    
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formCreate);
+
+
 /***/ })
 
 /******/ 	});
@@ -588,8 +670,22 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ "./src/styles/styles.css");
-console.log(123)
-;
+/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todoList */ "./src/todoList.js");
+
+
+//import makeTodo from './createTodoItem'
+
+const content = document.querySelector(".content")
+
+const addTodoBtn = document.querySelector(".new-todo-btn")
+addTodoBtn.addEventListener("click", _todoList__WEBPACK_IMPORTED_MODULE_1__["default"])
+const sumbitBtn = document.querySelector(".submit")
+sumbitBtn.addEventListener('click', _todoList__WEBPACK_IMPORTED_MODULE_1__.makeTodo)
+
+  
+
+
+
 })();
 
 /******/ })()
