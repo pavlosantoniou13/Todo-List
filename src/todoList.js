@@ -1,7 +1,12 @@
+// First FormCreate create a form
+// second make todo makes the todo object and and pushes it,and then creates a card with the info
+// last deletes the todo from they array and from the DOM
+
 const content = document.querySelector(".content")
 const addTodoBtn = document.querySelector(".new-todo-btn")
 
 let todoStorage = [];
+
 
 function Todo (title, description, date) {
     this.title = title
@@ -11,7 +16,14 @@ function Todo (title, description, date) {
     
 }
 
+function projectFactory(title) {
+    return { 
+      title,
+      tasks: []
+    }
+} 
 
+const home = projectFactory("Home")
 
 
 function formCreate() {  
@@ -79,6 +91,7 @@ function makeTodo(ev) {
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
     todoStorage.push(todo)
+    
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
@@ -88,7 +101,18 @@ function makeTodo(ev) {
     para3.textContent = "Date:" + " " +    date.value
     deleteBtn.textContent = "Delete"
     deleteBtn.addEventListener("click", deleteTodo)
+
+   
+    projectCreate(ev)
+      
+    home.tasks.push(todo)
 }
+
+function projectCreate(ev) {
+    ev.preventDefault();
+    console.log(home)
+}
+
 
 
 function deleteTodo(ev){
@@ -101,8 +125,24 @@ function deleteTodo(ev){
         return true
        }
     })
+    home.tasks = home.tasks.filter(
+        todo => {
+        if(todo.id == id) {
+         return false
+        } else {
+         return true
+        }
+     })
+    
     ev.target.closest('.card').remove();
 }
+
+
+
+
+
+
+
 
 export default formCreate
 export {makeTodo}

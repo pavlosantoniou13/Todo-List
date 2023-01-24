@@ -507,6 +507,40 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
+/***/ "./src/projects.js":
+/*!*************************!*\
+  !*** ./src/projects.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/*function projectFactory(title) {
+    return { 
+      title,
+      todos: []
+    }
+} */
+
+function ProjectFactory (title) {
+    this.title = title
+    todos = []
+    this.id = Date.now()
+    
+}
+
+
+function projectCreate(ev) {
+    ev.preventDefault();
+    console.log("malakas")
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (projectCreate);
+
+/***/ }),
+
 /***/ "./src/todoList.js":
 /*!*************************!*\
   !*** ./src/todoList.js ***!
@@ -518,10 +552,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "makeTodo": () => (/* binding */ makeTodo)
 /* harmony export */ });
+// First FormCreate create a form
+// second make todo makes the todo object and and pushes it,and then creates a card with the info
+// last deletes the todo from they array and from the DOM
+
 const content = document.querySelector(".content")
 const addTodoBtn = document.querySelector(".new-todo-btn")
 
 let todoStorage = [];
+
 
 function Todo (title, description, date) {
     this.title = title
@@ -531,7 +570,14 @@ function Todo (title, description, date) {
     
 }
 
+function projectFactory(title) {
+    return { 
+      title,
+      tasks: []
+    }
+} 
 
+const home = projectFactory("Home")
 
 
 function formCreate() {  
@@ -546,9 +592,6 @@ const labelDescription = document.createElement("label")
 labelDescription.for = "title"
 const description = document.createElement("input")
 
-
-
-
 const formBoxDate = document.createElement("div")
 const dueDateLabel = document.createElement("label")
 dueDateLabel.for = "date"
@@ -557,14 +600,6 @@ dueDate.type = "date"
 
 const sumbitBtn = document.createElement("button")
 sumbitBtn.type = "submit"
-
-//3const deleteBtn = document.createElement("button")
-
-//const formBoxDataList = document.createElement("div")
-//const DataListLabel = document.createElement("label")
-//const dataList = document.createElement("sele")
-//dataList.option = "malakas"
-
 
 content.appendChild(form).className = "form";
 form.appendChild(formBoxTitle)
@@ -576,28 +611,15 @@ formBoxDescription.appendChild(description).className = "description"
 form.appendChild(formBoxDate)
 formBoxDate.appendChild(dueDateLabel)
 formBoxDate.appendChild(dueDate).className = "date"
-//form.appendChild(formBoxDataList)
-//formBoxDataList.appendChild(DataListLabel)
-//formBoxDataList.appendChild(dataList)
 
 form.appendChild(sumbitBtn).className = "submit"
-//1content.appendChild(deleteBtn).className = "delete"
-
-
 
 
 labelTitle.textContent = "Title:"
 labelDescription.textContent = "Description:"
 sumbitBtn.textContent = "Submit"
-//DataListLabel.textContent = "Urgency:"
-//2deleteBtn.textContent = "Delete"
-
-
 
 sumbitBtn.addEventListener('click', makeTodo)
-
-//4deleteBtn.addEventListener("click", deleteTodo)
-
 }
 
 function makeTodo(ev) {
@@ -606,16 +628,12 @@ function makeTodo(ev) {
     const description = document.querySelector(".description")
     const date = document.querySelector(".date")
 
-
     const card = document.createElement("div")
     let cardText = document.createElement("div")
     let para1 = document.createElement("p");
     let para2 = document.createElement("p"); 
     let para3 = document.createElement("p"); 
     const deleteBtn = document.createElement("button")
-
-
-
 
     content.appendChild(card).className = "card"
     card.appendChild(cardText).className = "cardText"
@@ -624,25 +642,31 @@ function makeTodo(ev) {
     cardText.appendChild(para3).className = "date"
     card.appendChild(deleteBtn).className = "delete"
 
-
-
-
-
-    
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
     todoStorage.push(todo)
+    
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
-
 
     para1.textContent = "Title:" + " " + title.value
     para2.textContent = "Description:" + " " +   description.value
     para3.textContent = "Date:" + " " +    date.value
     deleteBtn.textContent = "Delete"
     deleteBtn.addEventListener("click", deleteTodo)
+
+   
+    projectCreate(ev)
+      
+    home.tasks.push(todo)
 }
+
+function projectCreate(ev) {
+    ev.preventDefault();
+    console.log(home)
+}
+
 
 
 function deleteTodo(ev){
@@ -655,8 +679,24 @@ function deleteTodo(ev){
         return true
        }
     })
+    home.tasks = home.tasks.filter(
+        todo => {
+        if(todo.id == id) {
+         return false
+        } else {
+         return true
+        }
+     })
+    
     ev.target.closest('.card').remove();
 }
+
+
+
+
+
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formCreate);
 
@@ -745,9 +785,11 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ "./src/styles/styles.css");
 /* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todoList */ "./src/todoList.js");
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projects */ "./src/projects.js");
 
 
 //import makeTodo from './createTodoItem'
+
 
 const content = document.querySelector(".content")
 
@@ -756,7 +798,8 @@ const content = document.querySelector(".content")
 const addTodoBtn = document.querySelector(".new-todo-btn")
 addTodoBtn.addEventListener("click", _todoList__WEBPACK_IMPORTED_MODULE_1__["default"])
 
-
+//const sumbitBtn = document.querySelector(".submit")
+//sumbitBtn.addEventListener('click', projectCreate)
   
 
 
