@@ -91,7 +91,7 @@ function makeTodo(ev) {
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
     todoStorage.push(todo)
-    
+    home.tasks.push(todo)
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
@@ -105,7 +105,7 @@ function makeTodo(ev) {
    
     projectCreate(ev)
       
-    home.tasks.push(todo)
+    
 }
 
 function projectCreate(ev) {
