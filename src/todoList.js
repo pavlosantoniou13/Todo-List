@@ -26,9 +26,6 @@ const labelDescription = document.createElement("label")
 labelDescription.for = "title"
 const description = document.createElement("input")
 
-
-
-
 const formBoxDate = document.createElement("div")
 const dueDateLabel = document.createElement("label")
 dueDateLabel.for = "date"
@@ -37,14 +34,6 @@ dueDate.type = "date"
 
 const sumbitBtn = document.createElement("button")
 sumbitBtn.type = "submit"
-
-//3const deleteBtn = document.createElement("button")
-
-//const formBoxDataList = document.createElement("div")
-//const DataListLabel = document.createElement("label")
-//const dataList = document.createElement("sele")
-//dataList.option = "malakas"
-
 
 content.appendChild(form).className = "form";
 form.appendChild(formBoxTitle)
@@ -56,28 +45,15 @@ formBoxDescription.appendChild(description).className = "description"
 form.appendChild(formBoxDate)
 formBoxDate.appendChild(dueDateLabel)
 formBoxDate.appendChild(dueDate).className = "date"
-//form.appendChild(formBoxDataList)
-//formBoxDataList.appendChild(DataListLabel)
-//formBoxDataList.appendChild(dataList)
 
 form.appendChild(sumbitBtn).className = "submit"
-//1content.appendChild(deleteBtn).className = "delete"
-
-
 
 
 labelTitle.textContent = "Title:"
 labelDescription.textContent = "Description:"
 sumbitBtn.textContent = "Submit"
-//DataListLabel.textContent = "Urgency:"
-//2deleteBtn.textContent = "Delete"
-
-
 
 sumbitBtn.addEventListener('click', makeTodo)
-
-//4deleteBtn.addEventListener("click", deleteTodo)
-
 }
 
 function makeTodo(ev) {
@@ -86,16 +62,12 @@ function makeTodo(ev) {
     const description = document.querySelector(".description")
     const date = document.querySelector(".date")
 
-
     const card = document.createElement("div")
     let cardText = document.createElement("div")
     let para1 = document.createElement("p");
     let para2 = document.createElement("p"); 
     let para3 = document.createElement("p"); 
     const deleteBtn = document.createElement("button")
-
-
-
 
     content.appendChild(card).className = "card"
     card.appendChild(cardText).className = "cardText"
@@ -104,18 +76,12 @@ function makeTodo(ev) {
     cardText.appendChild(para3).className = "date"
     card.appendChild(deleteBtn).className = "delete"
 
-
-
-
-
-    
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
     todoStorage.push(todo)
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
-
 
     para1.textContent = "Title:" + " " + title.value
     para2.textContent = "Description:" + " " +   description.value
