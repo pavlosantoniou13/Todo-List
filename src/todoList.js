@@ -1,3 +1,6 @@
+import { defaultProject } from "./projects";
+
+const defaultProjectVar = defaultProject
 // First FormCreate create a form
 // second make todo makes the todo object and and pushes it,and then creates a card with the info
 // last deletes the todo from they array and from the DOM
@@ -16,14 +19,14 @@ function Todo (title, description, date) {
     
 }
 
-function projectFactory(title) {
-    return { 
-      title,
-      tasks: []
-    }
-} 
+//function projectFactory(title) {
+   // return { 
+   //   title,
+    //  tasks: []
+   // }
+//} 
 
-const home = projectFactory("Home")
+//const home = projectFactory("Home")
 
 
 function formCreate() {  
@@ -67,7 +70,7 @@ sumbitBtn.textContent = "Submit"
 
 sumbitBtn.addEventListener('click', makeTodo)
 }
-
+const defaulCard = document.querySelector(".default-card")
 function makeTodo(ev) {
     ev.preventDefault();
     const title = document.querySelector(".title")
@@ -81,7 +84,7 @@ function makeTodo(ev) {
     let para3 = document.createElement("p"); 
     const deleteBtn = document.createElement("button")
 
-    content.appendChild(card).className = "card"
+    defaulCard.appendChild(card).className = "card"
     card.appendChild(cardText).className = "cardText"
     cardText.appendChild(para1).className = "title"
     cardText.appendChild(para2).className = "description"
@@ -91,7 +94,8 @@ function makeTodo(ev) {
     const todo = new Todo(title.value, description.value, date.value )
     deleteBtn.value = todo.id
     todoStorage.push(todo)
-    home.tasks.push(todo)
+    //home.tasks.push(todo)
+    defaultProjectVar.tasks.push(todo)
     console.log(todoStorage)
     
     ev.target.closest("form").remove() 
@@ -102,16 +106,16 @@ function makeTodo(ev) {
     deleteBtn.textContent = "Delete"
     deleteBtn.addEventListener("click", deleteTodo)
 
-   
-    projectCreate(ev)
+   console.log(defaultProjectVar)
+   // projectCreate(ev)
       
     
 }
 
-function projectCreate(ev) {
-    ev.preventDefault();
-    console.log(home)
-}
+//function projectCreate(ev) {
+  //  ev.preventDefault();
+  //  console.log(home)
+//}
 
 
 
@@ -125,7 +129,7 @@ function deleteTodo(ev){
         return true
        }
     })
-    home.tasks = home.tasks.filter(
+    defaultProjectVar.tasks = defaultProjectVar.tasks.filter(
         todo => {
         if(todo.id == id) {
          return false
