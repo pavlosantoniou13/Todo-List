@@ -52,14 +52,19 @@ function projectCreate(ev) {
    const ProjectTask = document.createElement("div")
    const taskTitle = document.createElement("p")
    const todoCard = document.createElement("div")
-
+   const addTodo = document.createElement('button') 
+   
    projectContainer.appendChild(projectCard).className = "projectCard"
    projectCard.appendChild(projectName).className = "projectName"
    projectCard.appendChild(ProjectTask).className = "projectTask"
    ProjectTask.appendChild(taskTitle).className = "taskTitle" 
+   projectCard.appendChild(todoCard).className = "todoCard"
+   projectCard.appendChild(addTodo).className = "add-todo-Btn2" 
 
 
    projectName.textContent = input.value
+   todoCard.textContent = "Add Todo"
+   addTodo.textContent = "+"
    
 } 
 

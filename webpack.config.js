@@ -8,7 +8,6 @@ module.exports = {
         assetModuleFilename: '[name][ext]',
         filename: 'bundle.js'
     },
-    devtool: 'source-map',
     module: {
         rules: [
           {
