@@ -1,16 +1,13 @@
 import { defaultProject } from "./projects";
 
 const defaultProjectVar = defaultProject
-// First FormCreate create a form
-// second make todo makes the todo object and and pushes it,and then creates a card with the info
-// last deletes the todo from they array and from the DOM
 
 const content = document.querySelector(".content")
 const addTodoBtn = document.querySelector(".new-todo-btn")
-
+//storage for todos
 let todoStorage = [];
 
-
+//todo constructor
 function Todo (title, description, date) {
     this.title = title
     this.description = description
@@ -28,7 +25,7 @@ function Todo (title, description, date) {
 
 //const home = projectFactory("Home")
 
-
+// First FormCreate create a form
 function formCreate() {  
 const form = document.createElement("form")
 const formBoxTitle = document.createElement("div")
@@ -70,7 +67,9 @@ sumbitBtn.textContent = "Submit"
 
 sumbitBtn.addEventListener('click', makeTodo)
 }
+
 const defaulCard = document.querySelector(".default-card")
+//  make todo makes the todo object and and pushes it,and then creates a card with the info
 function makeTodo(ev) {
     ev.preventDefault();
     const title = document.querySelector(".title")
@@ -118,7 +117,7 @@ function makeTodo(ev) {
 //}
 
 
-
+// last deletes the todo from they array and from the DOM
 function deleteTodo(ev){
     const id = ev.target.value;
     todoStorage = todoStorage.filter(

@@ -1,14 +1,10 @@
-
-
-
-
 let addProjectBtn = document.querySelector(".add-project")
 let formDiv = document.querySelector(".form-container")
 let projectContainer = document.querySelector(".userProject")
-
+// get the project add button from html
 addProjectBtn.addEventListener("click", formProjectCreate)
 
-
+//creates the form to make a project
 function formProjectCreate() {
     const form = document.createElement("form")
     const formBoxProject = document.createElement("div")
@@ -31,7 +27,7 @@ function formProjectCreate() {
 }
 
 
-
+//takes the form details and creates a project card
 function projectCreate(ev) {
     //stoping the submit
     ev.preventDefault();
@@ -66,6 +62,8 @@ function projectCreate(ev) {
    todoCard.textContent = "Add Todo"
    addTodo.textContent = "+"
    
+    
+
 } 
 
 
@@ -76,7 +74,7 @@ const defaultProject = projectFactory("Default Project")
 console.log(defaultProject)
 export {defaultProject}
 
-
+//project factory function
 function projectFactory(title) {
     return { 
       title,
@@ -84,6 +82,7 @@ function projectFactory(title) {
     }
     
 } 
+
 
 
 
