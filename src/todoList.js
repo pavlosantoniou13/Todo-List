@@ -1,4 +1,6 @@
 import { defaultProject } from "./projects";
+import { addTodoButton } from "./mainpage";
+const projectContainer = document.querySelector(".project-container")
 
 const defaultProjectVar = defaultProject
 
@@ -47,7 +49,8 @@ dueDate.type = "date"
 const sumbitBtn = document.createElement("button")
 sumbitBtn.type = "submit"
 
-content.appendChild(form).className = "form";
+content.appendChild(projectContainer).className = "project-container"
+projectContainer.appendChild(form).className = "form";
 form.appendChild(formBoxTitle)
 formBoxTitle.appendChild(labelTitle)
 formBoxTitle.appendChild(title).className = "title"
@@ -68,7 +71,7 @@ sumbitBtn.textContent = "Submit"
 sumbitBtn.addEventListener('click', makeTodo)
 }
 
-const defaulCard = document.querySelector(".default-card")
+
 //  make todo makes the todo object and and pushes it,and then creates a card with the info
 function makeTodo(ev) {
     ev.preventDefault();
@@ -83,22 +86,28 @@ function makeTodo(ev) {
     let para3 = document.createElement("p"); 
     const deleteBtn = document.createElement("button")
 
-    defaulCard.appendChild(card).className = "card"
+    // edw pou einai pou tha fanei sto DOM h karta
+    content.appendChild(projectContainer).className = "project-container"
+    projectContainer.appendChild(card).className = "card"
     card.appendChild(cardText).className = "cardText"
     cardText.appendChild(para1).className = "title"
     cardText.appendChild(para2).className = "description"
     cardText.appendChild(para3).className = "date"
     card.appendChild(deleteBtn).className = "delete"
 
+    //creates todo 
     const todo = new Todo(title.value, description.value, date.value )
+    //matches the delete button with the todo id 
     deleteBtn.value = todo.id
+    //pushes the new todo to the todoStorage
     todoStorage.push(todo)
-    //home.tasks.push(todo)
+    //edw prepei na uparxei enas tropos na mporw na stelnw to kathe todo sto project pou thelw
     defaultProjectVar.tasks.push(todo)
     console.log(todoStorage)
-    
+    // deletes the todo form
     ev.target.closest("form").remove() 
 
+    //Fills the Todo Card with the inputs that it got from the Todo form
     para1.textContent = "Title:" + " " + title.value
     para2.textContent = "Description:" + " " +   description.value
     para3.textContent = "Date:" + " " +    date.value
@@ -118,6 +127,7 @@ function makeTodo(ev) {
 
 
 // last deletes the todo from they array and from the DOM
+// second deletes the task(todo) that passed in to the given project
 function deleteTodo(ev){
     const id = ev.target.value;
     todoStorage = todoStorage.filter(

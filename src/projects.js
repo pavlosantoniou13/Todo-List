@@ -1,6 +1,6 @@
 let addProjectBtn = document.querySelector(".add-project")
 let formDiv = document.querySelector(".form-container")
-let projectContainer = document.querySelector(".userProject")
+let projectContainer = document.querySelector(".projects-div")
 // get the project add button from html
 addProjectBtn.addEventListener("click", formProjectCreate)
 
@@ -51,7 +51,7 @@ function projectCreate(ev) {
    const addTodo = document.createElement('button') 
    
    projectContainer.appendChild(projectCard).className = "projectCard"
-   projectCard.appendChild(projectName).className = "projectName"
+   projectCard.appendChild(projectName).className = input.value
    projectCard.appendChild(ProjectTask).className = "projectTask"
    ProjectTask.appendChild(taskTitle).className = "taskTitle" 
    projectCard.appendChild(todoCard).className = "todoCard"
